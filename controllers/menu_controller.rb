@@ -76,11 +76,16 @@ end
     puts "New entry created"
   end
   def entry_number
-      address_book.entries.each do |entry|
+
       puts "Select entry number"
-      number_entered = gets.chomp
-      puts entry[number_entered].to_s
+      selection = gets.chomp.to_i
+      if selection < @address_book.entries.count
+      puts @address_book.entries[selection].to_s
+    else
+      puts "You have picked an invalid number"
+      entry_number
     end
+
   end
 
   def search_entries
