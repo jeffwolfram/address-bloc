@@ -15,7 +15,7 @@ end
     puts "4 - Import entries from a CSV"
     puts "5 - View entry number"
     puts "6 - Exit"
-    puts "7 - DELETE ALL ENTRIES!!!!!!!"
+    puts "7 - Nuke it all!!!!!!!"
     print "Enter your selection: "
 
     selection = gets.to_i
