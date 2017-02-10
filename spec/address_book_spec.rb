@@ -7,7 +7,7 @@ require_relative '../models/address_book'
        expect(entry.name).to eq expected_name
        expect(entry.phone_number).to eq expected_number
        expect(entry.email).to eq expected_email
-     end
+   end
 
    describe "attributes" do
      it "responds to entries" do
@@ -46,36 +46,27 @@ require_relative '../models/address_book'
        check_entry(entry_five, "Sussie", "555-555-2036", "sussie@blocmail.com")
 
      end
-    #  it "responds to entries_2" do
-    #    expect(book).to respond_to(:entries_2)
-    #    book.import_from_csv("entries_2.csv")
-    #    entry_one = book.entries[0]
-    #    check_entry(entry_one, "Tom", "555-555-4854", "tom@blocmail.com")
-    #  end
-    #  it "imports second entries_2" do
-    #    expect(book).to respond_to(:entries_2)
-    #    book.import_from_csv("entries_2.csv")
-    #    entry_one = book.entries[1]
-    #    check_entry(entry_one, "Eric", "555-555-4854", "eric@blocmail.com")
-    #  end
-    #  it "imports third entries_2" do
-    #    expect(book).to respond_to(:entries_2)
-    #    book.import_from_csv("entries_2.csv")
-    #    entry_one = book.entries[2]
-    #    check_entry(entry_one, "Larry", "555-555-4854", "larry@blocmail.com")
-    #  end
-    #  it "imports fourth entries_2" do
-    #    expect(book).to respond_to(:entries_2)
-    #    book.import_from_csv("entries_2.csv")
-    #    entry_one = book.entries[3]
-    #    check_entry(entry_one, "Grace", "555-555-4854", "grace@blocmail.com")
-    #  end
-    #  it "imports fifth entries_2" do
-    #    expect(book).to respond_to(:entries)
-    #    book.import_from_csv("entries_2.csv")
-    #    entry_one = book.entries_2[4]
-    #    check_entry(entry_one, "Lynda", "555-555-4854", "lynda@blocmail.com")
-    #  end
+    context "importing from entries_2.csv" do
+      it "imports the correct number of entries"do
+      book.import_from_csv("entries_2.csv")
+      expect(book.entries.size).to eq 3
+      end
+      it "imports the 1st entry" do
+        book.import_from_csv("entries_2.csv")
+        entry_one = book.entries[2]
+        check_entry(entry_one, "Tom", "555-555-4854", "Tom@blocmail.com")
+      end
+      it "imports 2nd entry" do
+        book.import_from_csv("entries_2.csv")
+        entry_two = book.entries[0]
+        check_entry(entry_two, "Eric", "555-555-5415", "Eric@blocmail.com")
+      end
+      it "imports 3rd entry" do
+        book.import_from_csv("entries_2.csv")
+        entry_three = book.entries[1]
+        check_entry(entry_three, "Larry", "555-555-3660", "Larry@blocmail.com")
+      end
+  end
 
      it "initializes entries as an array" do
        expect(book.entries).to be_an(Array)
