@@ -8,6 +8,7 @@ attr_reader :entries
    @entries = []
  end
 
+#Searches AddressBook for a name
  def binary_search(name)
      # #1
      lower = 0
@@ -27,11 +28,20 @@ attr_reader :entries
        elsif name > mid_name
          lower = mid + 1
        end
-
-
-     # #5
+     end
      return nil
+ end
+
+ #another way to search AddressBook
+ def interactive_search(name)
+   i = 0
+   while i <= entries.length - 1
+     if entries[i].name == name
+       return entries[i]
+     end
+     i += 1
    end
+   return nil
  end
 def add_entry(name, phone_number, email)
   index = 0
@@ -64,6 +74,6 @@ end
    csv.each do |row|
      row_hash = row.to_hash
      add_entry(row_hash["name"], row_hash["phone_number"], row_hash["email"])
-   end
-end
   end
+  end
+end

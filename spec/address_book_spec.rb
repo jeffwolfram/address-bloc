@@ -121,20 +121,21 @@ require_relative '../models/address_book'
        expect(book_size).to eq 5
      end
    end
-   describe "#binary_search" do
-     it "searched AddressBook for a non_existing entry" do
-       book.import_from_csv("entries.csv")
-       entry = book.binary_search("Dan")
-       expect(entry).to be_nil
-     end
-   end
+   # Test the binary_search method
+    describe "#binary_search" do
+      it "searches AddressBook for a non-existent entry" do
+        book.import_from_csv("entries.csv")
+        entry = book.binary_search("Dan")
+        expect(entry).to be_nil
+      end
 
-     it "searches AddressBook for Bill" do
-         book.import_from_csv("entries.csv")
-         entry = book.binary_search("Bill")
-         expect(entry).to be_a Entry
-         check_entry(entry, "Bill", "555-555-4854", "bill@blocmail.com")
-       end
+
+         it "searches AddressBook for Bill" do
+            book.import_from_csv("entries.csv")
+            entry = book.binary_search("Bill")
+            expect(entry).to be_a Entry
+            check_entry(entry, "Bill", "555-555-4854", "bill@blocmail.com")
+          end
 
           it "searches AddressBook for Bob" do
             book.import_from_csv("entries.csv")
@@ -164,10 +165,38 @@ require_relative '../models/address_book'
             check_entry(entry, "Sussie", "555-555-2036", "sussie@blocmail.com")
           end
 
-  it "searches AddressBook for Billy" do
-    book.import_from_csv("entries.csv")
-    entry = book.binary_search("Billy")
-    expect(entry).to be_nil
+          it "searches AddressBook for Billy" do
+            book.import_from_csv("entries.csv")
+            entry = book.binary_search("Billy")
+            expect(entry).to be_nil
+          end
+          end
+          describe "#interactive_search" do
+            it "searches AddressBook for a non-existing entry" do
+              book.import_from_csv("entries.csv")
+              entry = book.interactive_search("Dan")
+              expect(entry).to be_nil
+            end
+            it "searches AddressBook for Sussie" do
+              book.import_from_csv("entries.csv")
+            entry = book.interactive_search("Sussie")
+            expect(entry).to be_a Entry
+            check_entry(entry, "Sussie", "555-555-2036", "sussie@blocmail.com")
+            end
+            it "searches AddressBook for Bill" do
+              book.import_from_csv("entries.csv")
+            entry = book.interactive_search("Bill")
+            expect(entry).to be_a Entry
+            check_entry(entry, "Bill", "555-555-4854", "bill@blocmail.com")
+            end
+            it "searches AddressBook for Sussie" do
+              book.import_from_csv("entries.csv")
+            entry = book.interactive_search("Sussie")
+            expect(entry).to be_a Entry
+            check_entry(entry, "Sussie", "555-555-2036", "sussie@blocmail.com")
+            end
 
-  end
+          end
+
+
 end
